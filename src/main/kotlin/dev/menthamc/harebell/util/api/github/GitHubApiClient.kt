@@ -5,10 +5,11 @@ import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.time.Duration
 
-private const val USER_AGENT = "Harebell/1.0"
+private val USER_AGENT = "Harebell/${System.getProperty("Version") ?: "unknown"}"
 
 class GithubApiClient(
     private val authToken: String? = System.getenv("GITHUB_TOKEN") // for debug use
+        ?: System.getenv("token")
 ) {
     private val httpClient = HttpClient.newBuilder()
         .followRedirects(HttpClient.Redirect.NORMAL)
