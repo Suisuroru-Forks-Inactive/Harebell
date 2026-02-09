@@ -5,8 +5,6 @@ import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.time.Duration
 
-private val USER_AGENT = "Harebell/${System.getProperty("Version") ?: "unknown"}"
-
 class GithubApiClient(
     private val authToken: String? = System.getenv("GITHUB_TOKEN") // for debug use
         ?: System.getenv("token")
@@ -19,6 +17,9 @@ class GithubApiClient(
     private val json = Json { ignoreUnknownKeys = true }
 
     fun createBaseRequestBuilder(download: Boolean = false): HttpRequest.Builder {
+        val USER_AGENT = "Harebell/${System.getProperty("Version") ?: "unknown"}"
+        println(System.getProperty("Version"))
+        println("USER_AGENT: $USER_AGENT")
         val builder = HttpRequest.newBuilder()
             .header("User-Agent", USER_AGENT)
         if (download) {
