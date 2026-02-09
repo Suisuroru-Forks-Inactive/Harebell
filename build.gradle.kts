@@ -33,6 +33,6 @@ tasks.named<ShadowJar>("shadowJar") {
     minimize()
     manifest {
         attributes["Main-Class"] = "dev.menthamc.harebell.CliMainKt"
-        attributes["Version"] = "$projectVersion-$gitHash"
+        attributes["Implementation-Version"] = "$projectVersion-$gitHash"
     }
 }
